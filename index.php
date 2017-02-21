@@ -135,7 +135,7 @@
     }
     $.post('remuveShippers.php', {'idArray' : deleteIdArray});
     $('#tableBody').load('ajax.php');
-    $('#tableBody').load('ajax.php');
+    
     
   }
 
