@@ -53,7 +53,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-heder">
-        <h1>Добавить (редактировать) грузоотправителя!</h1>
+        <h1 id="heder">Добавить (редактировать) грузоотправителя!</h1>
       </div>
       <div id="addShippersModal" class="modal-body">
         <form id="addShippersForm" class="form-horizontal" role="form">
@@ -89,6 +89,7 @@
         $('#Name').val('');
         $('#Adress').val('');
       }
+      document.getElementById("heder").innerText = "Добавить грузоотправителя!";
       document.getElementById("addShippers").innerText = "Добавить";
       document.querySelector("#addShippers").setAttribute('onclick', "addShippersForm()");
       $("#myModal").modal('show');
@@ -144,6 +145,7 @@
     var editElement = document.querySelector("tr.success");
     $('#Name').val(editElement.childNodes[1].innerText);
     $('#Adress').val(editElement.childNodes[3].innerText);
+    document.getElementById("heder").innerText = "Изменить грузоотправителя!";
     document.getElementById("addShippers").innerText = "Изменить";
     document.querySelector("#addShippers").setAttribute('onclick', "editShippersForm("+editElement.getAttribute('id')+")");
     $("#myModal").modal('show');
