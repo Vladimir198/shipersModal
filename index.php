@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="bootstrap.js" type="text/javascript"></script>
-  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 </head>
 <body >
 
@@ -82,9 +82,20 @@
   <!-- =================Script============================ -->
   <script type="text/javascript"> 
     $(document).ready(function(){
-      $('#tableBody').load('ajax.php');
+      $.get("ajax.php", function(data){
+        alert("HI");
+        for (var shiper in data) {
+          var tr = document.createElement('tr');
+          var td = document.createElement('td');
+          td.innerText = shiper.name;
+          tr.append(td);
+          td.innerText = shiper.adress;
+          $("#tableBody").append(tr);
+
+        }
+      });
     });
-    
+
 
     $("#modalAddButton").click(function(){
       if ($('#Name').val() !="" || $('#Adress').val() != "") {
@@ -102,7 +113,7 @@
         event.preventDefault();
       });
       $.post('add_shippers.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()});
-      $('#tableBody').load('ajax.php');
+      
       $('#myModal').modal('hide');
     }
 
@@ -112,7 +123,7 @@
        event.preventDefault();
      });
       $.post('edit_element.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val(), 'id' : id});
-      $('#tableBody').load('ajax.php');
+      
       $('#myModal').modal('hide');
       
     }
@@ -136,7 +147,7 @@
       tableBody.removeChild(delElements[i]);
     }
     $.post('remuveShippers.php', {'idArray' : deleteIdArray});
-    $('#tableBody').load('ajax.php');
+    
     
     
   }
