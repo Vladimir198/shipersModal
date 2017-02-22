@@ -85,7 +85,7 @@
       $.get("ajax.php", function(data){
         var data1 = JSON.parse(data);
         for (var i = 0; i < data1.length; i++) {
-          $("#tableBody").append('<tr id='+data1[i].id+' onclick =rowClick('+data1[i].id+')><td>'+ data1[i].name +
+          $("#tableBody").append('<tr id='+data1[i].id+' class = "active" onclick =rowClick('+data1[i].id+')><td>'+ data1[i].name +
             '</td><td>'+data1[i].adress+'</td></tr>');
         }
       });
