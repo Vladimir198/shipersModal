@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="bootstrap.js" type="text/javascript"></script>
-  <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+  <!-- <script type="text/javascript" src="jquery-3.1.1.min.js"></script> -->
 </head>
 <body >
 
@@ -107,8 +107,13 @@
       $("#addShippersForm").submit(function(event){
         event.preventDefault();
       });
-      $.post('add_shippers.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()});
-      
+      $.get('add_shippers.php', {'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()},
+        $(function (data, Text) {
+          
+         //var data1 = JSON.parse(data);
+         $("#tableBody").append('<tr id='+ data +' class = "active" onclick =rowClick('+data+')><td>'+ data +
+          '</td><td>'+ data +'</td></tr>');
+       }));
       $('#myModal').modal('hide');
     }
 
@@ -120,7 +125,6 @@
       $.post('edit_element.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val(), 'id' : id});
       
       $('#myModal').modal('hide');
-      
     }
 
 
@@ -150,8 +154,8 @@
 
   $("#editButton").click(function(){
     var editElement = document.querySelector("tr.success");
-    $('#Name').val(editElement.childNodes[1].innerText);
-    $('#Adress').val(editElement.childNodes[3].innerText);
+    $('#Name').val(editElement.childNodes[0].innerText);
+    $('#Adress').val(editElement.childNodes[1].innerText);
     document.getElementById("heder").innerText = "Изменить грузоотправителя!";
     document.getElementById("addShippers").innerText = "Изменить";
     document.querySelector("#addShippers").setAttribute('onclick', "editShippersForm("+editElement.getAttribute('id')+")");
@@ -159,7 +163,6 @@
   });
 
   function viewCork(){
-
   }
 
 </script>
