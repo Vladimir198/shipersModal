@@ -83,14 +83,13 @@
   <script type="text/javascript"> 
     $(document).ready(function(){
       $.get("ajax.php", function(data){
-        alert("HI");
-        for (var shiper in data) {
-          var tr = document.createElement('tr');
-          var td = document.createElement('td');
-          td.innerText = shiper.name;
-          tr.append(td);
-          td.innerText = shiper.adress;
-          $("#tableBody").append(tr);
+        
+        //$("#tableBody").append('<tr ><td>'+data+'</td></tr>');
+        //     '</td><td>'+shiper.name+'</td></tr>');
+         for (var shiper in data) {
+          
+          $("#tableBody").append('<tr id='+shiper.id+' onclick =rowClick('+shiper.id+')><td>'+ data[2] +
+            '</td><td>'+data[1].adress+'</td></tr>');
 
         }
       });

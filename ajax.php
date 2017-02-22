@@ -1,22 +1,26 @@
  <?php 
+ header('Content-type: text/html; charset=utf-8');
  include "db_params.php";
  $cnn = db_connect();
  $rs = db_execute($cnn, "select * from Shippers");
 /**
 * 
 */
+class Shipper
+{
+	public $id, $name, $adress;
+}
 $array  = array();
-$i=0;
- while (!$rs->EOF) {
- 	$array[i]->id = $rs->Fields["id"]->Value;
- 	$array[i]->name = $rs->Fields["Name"]->Value;
- 	$array[i++]->adress = $rs->Fields["Adress"]->Value;
- 	$rs->MoveNext();
- 	
- } 
- $con = $rs=null;
- ?>
- <!-- <tr id=<?php echo $rs->Fields["id"]->Value; ?> class="active" onclick=<?php echo "rowClick(". $rs->Fields["id"]->Value.")" ?>>
- 		<td><?php echo $rs->Fields["Name"]->Value; ?></td>
- 		<td><?php echo $rs->Fields["Adress"]; ?></td>
- 	</tr> -->
+$i= 0;
+while (!$rs->EOF) {
+	$shipper = new Shipper();
+	$shipper->id = $rs->Fields["id"]->Value;
+	$shipper->name = $rs->Fields["Name"]->Value;
+	$shipper->adress = $rs->Fields["Adress"]->Value;
+	$array[$i] = $shipper;
+	$i++;
+	$rs->MoveNext();
+} 
+$con = $rs=null;
+echo json_encode($array);
+?>
