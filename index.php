@@ -81,8 +81,10 @@
 
   <!-- =================Script============================ -->
   <script type="text/javascript"> 
+    $(document).ready(function(){
+      $('#tableBody').load('ajax.php');
+    });
     
-     $('#tableBody').load('ajax.php');
 
     $("#modalAddButton").click(function(){
       if ($('#Name').val() !="" || $('#Adress').val() != "") {
@@ -102,7 +104,6 @@
       $.post('add_shippers.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()});
       $('#tableBody').load('ajax.php');
       $('#myModal').modal('hide');
-      $('#tableBody').load('ajax.php');
     }
 
 
