@@ -83,14 +83,10 @@
   <script type="text/javascript"> 
     $(document).ready(function(){
       $.get("ajax.php", function(data){
-        
-        //$("#tableBody").append('<tr ><td>'+data+'</td></tr>');
-        //     '</td><td>'+shiper.name+'</td></tr>');
-         for (var shiper in data) {
-          
-          $("#tableBody").append('<tr id='+shiper.id+' onclick =rowClick('+shiper.id+')><td>'+ data[2] +
-            '</td><td>'+data[1].adress+'</td></tr>');
-
+        var data1 = JSON.parse(data);
+        for (var i = 0; i < data1.length; i++) {
+          $("#tableBody").append('<tr id='+data1[i].id+' onclick =rowClick('+data1[i].id+')><td>'+ data1[i].name +
+            '</td><td>'+data1[i].adress+'</td></tr>');
         }
       });
     });
