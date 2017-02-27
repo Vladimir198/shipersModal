@@ -108,12 +108,11 @@
         event.preventDefault();
       });
       $.get('add_shippers.php', {'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()},
-        (function (data, Text) {
-          
-         //var data1 = JSON.parse(data);
-         $("#tableBody").append('<tr id='+ data +' class = "active" onclick =rowClick('+data+')><td>'+ data +
-          '</td><td>'+ data +'</td></tr>');
-       }));
+        function (newSipper, Text) {
+          newSipper = JSON.parse(newSipper);
+          $("#tableBody").append('<tr id='+ newSipper.id +' class = "active" onclick =rowClick('+newSipper.id+')><td>'+ newSipper.name+
+            '</td><td>'+ newSipper.adress+'</td></tr>');
+        });
       $('#myModal').modal('hide');
     }
 
@@ -122,7 +121,14 @@
       $("#addShippersForm").submit(function(event){
        event.preventDefault();
      });
-      $.post('edit_element.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val(), 'id' : id});
+      $.post('edit_element.php',{'Name' : $('#Name').val(), 'Adress' : $('#Adress').val(), 'id' : id},
+        function (editShipper) {
+          editShipper = JSON.parse(editShipper);
+          var editElements = document.getElementById(id);
+          editElements.childNodes[0].innerText = editShipper.name;
+          editElements.childNodes[1].innerText = editShipper.adress;
+
+        });
       
       $('#myModal').modal('hide');
     }
@@ -146,9 +152,6 @@
       tableBody.removeChild(delElements[i]);
     }
     $.post('remuveShippers.php', {'idArray' : deleteIdArray});
-    
-    
-    
   }
 
 

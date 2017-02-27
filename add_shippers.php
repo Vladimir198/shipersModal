@@ -1,5 +1,5 @@
 <?php 
-include "db_params.php";
+require_once "db_params.php";
 $cnn = db_connect();
 $rs;
 $id;
@@ -14,7 +14,7 @@ if ($Name !="") {
 }
 $con = $rs = null;
 
-include "ajax.php";
+require_once "classShipper.php";
 
 $shpp = new Shipper();
 $shpp->id = $id;
