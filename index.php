@@ -108,7 +108,7 @@
         event.preventDefault();
       });
       $.get('add_shippers.php', {'Name' : $('#Name').val(), 'Adress' : $('#Adress').val()},
-        $(function (data, Text) {
+        (function (data, Text) {
           
          //var data1 = JSON.parse(data);
          $("#tableBody").append('<tr id='+ data +' class = "active" onclick =rowClick('+data+')><td>'+ data +
