@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="bootstrap.js" type="text/javascript"></script>
-  <!-- <script type="text/javascript" src="jquery-3.1.1.min.js"></script> -->
+  
 </head>
 <body >
 
